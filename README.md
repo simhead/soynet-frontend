@@ -70,4 +70,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### NOTE
 @Mongo DB - to make user name as a primary key, run the following:
 use soynet
-db.soynetusers.createIndex({"name":1}, {unique:true})
+db.soynetusers.createIndex({"name":1,"faceid":1}, {unique:true})
+
+####Time Graph is from 
+https://www.npmjs.com/package/react-timeseries-charts
+https://github.com/esnet/react-timeseries-charts
+https://software.es.net/react-timeseries-charts/#/

@@ -106,6 +106,11 @@ class UserList extends Component {
                 filterable: true,
             },
             {
+                Header: 'FaceID',
+                accessor: 'faceid',
+                filterable: true,
+            },
+            {
                 Header: '',
                 accessor: '',
                 Cell: function(props) {

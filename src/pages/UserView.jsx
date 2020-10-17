@@ -1,122 +1,185 @@
 import React, { Component } from 'react'
+import ReactTable from 'react-table-6'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+
 import api from '../api'
+import activityapi from '../api/activity'
 
 import styled from 'styled-components'
 
-const Title = styled.h1.attrs({
-    className: 'h1',
+const Title = styled.h4.attrs({
+    className: 'h4',
 })``
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-    margin: 0 30px;
-`
-
-const Label = styled.label`
-    margin: 5px;
-`
-
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
+    margin: 0 10px;
 `
 
 const Button = styled.button.attrs({
     className: `btn btn-primary`,
 })`
-    margin: 15px 15px 15px 5px;
+    margin: 10px 10px 10px 5px;
 `
 
+function getMillies(datetimestamp) {
+    const dateInMillies = new Date(datetimestamp);
+    return dateInMillies;
+}
+
 class UserView extends Component {
+
     constructor(props) {
         super(props)
 
         this.state = {
             id: this.props.match.params.id,
             name: '',
-            rating: '',
-            time: '',
+            faceid: '',
+            email: '',
+            address: '',
+            user: [],
+            activities: [],
+            columns: [],
+            isLoading: false,
         }
     }
 
-    handleChangeInputName = async event => {
-        const name = event.target.value
-        this.setState({ name })
-    }
-
-    handleChangeInputRating = async event => {
-        const rating = event.target.validity.valid
-            ? event.target.value
-            : this.state.rating
-
-        this.setState({ rating })
-    }
-
-    handleChangeInputTime = async event => {
-        const time = event.target.value
-        this.setState({ time })
-    }
-
-    handleViewUser = async () => {
-        const { id, name, rating, time } = this.state
-        const arrayTime = time.split('/')
-        const payload = { name, rating, time: arrayTime }
-
-        await api.updateUserById(id, payload).then(res => {
-            window.alert(`User viewed successfully`)
+    componentDidMount = async () => {
+        this.setState({ isLoading: true })
+        const { id } = this.state
+        await api.getUserById(id).then(userById => {
             this.setState({
-                name: '',
-                rating: '',
-                time: '',
+                name: userById.data.data.name,
+                faceid: userById.data.data.faceid,
+                email: userById.data.data.email,
+                address: userById.data.data.address,
+                isLoading: false,
             })
         })
-    }
+        const { faceid } = this.state
 
-    componentDidMount = async () => {
-        const { id } = this.state
-        const user = await api.getUserById(id)
-
-        this.setState({
-            name: user.data.data.name,
-            rating: user.data.data.rating,
-            time: user.data.data.time.join('/'),
+        await activityapi.getActivityById(faceid).then(activitiesById => {
+            this.setState({
+                activities: activitiesById.data.data,
+                isLoading: false,
+            })
         })
+
     }
 
     render() {
-        const { name, rating, time } = this.state
+        const { name, faceid, email, address, activities, isLoading } = this.state
+
+        const columns = [
+            {
+                Header: 'FaceID',
+                accessor: 'faceid',
+            },
+            {
+                Header: 'Name',
+                accessor: 'name',
+            },
+            {
+                Header: 'Datetime',
+                accessor: 'datetime',
+                //this is the function custom tableCell
+                Cell : (convertdate) => {
+                    //props.value will convert the date
+                    const dateObject = new Date(convertdate.value);
+                    const datetimeseries = dateObject.getTime()
+                    //const datetimeseries = getMillies(convertdate.value)
+                    return <span>{datetimeseries}</span>
+                }
+            },
+            {
+                Header: 'Visit Count',
+                accessor: 'visitcnt',
+            },
+            {
+                Header: 'Stay Hour',
+                accessor: 'stayhour',
+            },
+            {
+                Header: 'Temperature',
+                accessor: 'temperature',
+            },
+            {
+                Header: 'Cough Count',
+                accessor: 'coughcnt',
+            },
+            {
+                id: 'maskflag',
+                Header: 'Mask On or Off',
+                accessor: d => d.maskflag.toString(),
+            },
+        ]
+
+        let showTable = true
+        if (!activities.length) {
+            showTable = false
+        }
+
+        let dateconverted = []
+        if (activities.length > 0) {
+            const activityvalues = activities.values();
+            for (const value of activityvalues) {
+                //props.value will convert the date
+                const dateObject = new Date(value.datetime);
+                dateconverted.push(dateObject.getTime());
+            }
+        }
+
+        let temperaturePoints = []
+        if (activities.length > 0) {
+            const activityvalues = activities.values();
+            for (const value of activityvalues) {
+                //props.value will convert the date
+                temperaturePoints.push(value.temperature);
+            }
+        }
+
+        const data = [
+            {name: 'Page A', uv: 400, pv: 2400, amt: 2400},
+            {name: 'Page B', uv: 400, pv: 2400, amt: 2400}
+        ];
+        //const tempSeries = new TimeSeries(data);
+
 
         return (
             <Wrapper>
-                <Title>View User</Title>
+                <Title>User Details</Title>
 
-                <Label>Name: </Label>
-                <InputText
-                    type="text"
-                    value={name}
-
-                />
-
-                <Label>Rating: </Label>
-                <InputText
-                    type="number"
-                    step="0.1"
-                    lang="en-US"
-                    min="0"
-                    max="10"
-                    pattern="[0-9]+([,\.][0-9]+)?"
-                    value={rating}
-                />
-
-                <Label>Time: </Label>
-                <InputText
-                    type="text"
-                    value={time}
-                />
+                <p>Name: {name}</p>
+                <p>FaceID: {faceid}</p>
+                <p>Email Address: {email}</p>
+                <p>Address: {address}</p>
 
                 <Button onClick={event =>  window.location.href='/user/list'}>User List</Button>
+                <LineChart width={600} height={300} data={activities} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <Line type="monotone" dataKey="temperature" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="visitcnt" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="stayhour" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="coughcnt" stroke="#8884d8" />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="datetime" />
+                    <YAxis />
+                    <Tooltip />
+                </LineChart>
+
+                {showTable && (
+                    <ReactTable
+                        data={activities}
+                        columns={columns}
+                        loading={isLoading}
+                        defaultPageSize={5}
+                        showPageSizeOptions={true}
+                        minRows={0}
+                    />
+                )}
+
+
             </Wrapper>
         )
     }

@@ -94,6 +94,14 @@ class UserView extends Component {
                 }
             },
             {
+                Header: 'Device ID',
+                accessor: 'deviceid',
+            },
+            {
+                Header: 'Feature Vector',
+                accessor: 'feature',
+            },
+            {
                 Header: 'Visit Count',
                 accessor: 'visitcnt',
             },
@@ -157,7 +165,9 @@ class UserView extends Component {
                 <p>Address: {address}</p>
 
                 <Button onClick={event =>  window.location.href='/user/list'}>User List</Button>
-                <LineChart width={600} height={300} data={activities} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <LineChart width={1200} height={300} data={activities} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <Line type="monotone" dataKey="deviceid" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="feature" stroke="#8884d8" />
                     <Line type="monotone" dataKey="temperature" stroke="#8884d8" />
                     <Line type="monotone" dataKey="visitcnt" stroke="#8884d8" />
                     <Line type="monotone" dataKey="stayhour" stroke="#8884d8" />

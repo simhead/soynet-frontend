@@ -76,3 +76,6 @@ db.soynetusers.createIndex({"name":1,"faceid":1}, {unique:true})
 https://www.npmjs.com/package/react-timeseries-charts
 https://github.com/esnet/react-timeseries-charts
 https://software.es.net/react-timeseries-charts/#/
+
+### NPM modules
+npm install recharts express body-parser cors mongoose nodemon

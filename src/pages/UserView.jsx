@@ -100,6 +100,15 @@ class UserView extends Component {
             {
                 Header: 'Feature Vector',
                 accessor: 'feature',
+                Cell : (convertfeature) => {
+                    let valout = '[';
+                    for (let i = 0; i < convertfeature.value.length-1; i++)
+                    {
+                        valout += convertfeature.value[i]+', ';
+                    }
+                    valout += convertfeature.value[convertfeature.value.length-1]+']';
+                    return <span>{valout}</span>
+                }
             },
             {
                 Header: 'Visit Count',
@@ -128,32 +137,6 @@ class UserView extends Component {
         if (!activities.length) {
             showTable = false
         }
-
-        let dateconverted = []
-        if (activities.length > 0) {
-            const activityvalues = activities.values();
-            for (const value of activityvalues) {
-                //props.value will convert the date
-                const dateObject = new Date(value.datetime);
-                dateconverted.push(dateObject.getTime());
-            }
-        }
-
-        let temperaturePoints = []
-        if (activities.length > 0) {
-            const activityvalues = activities.values();
-            for (const value of activityvalues) {
-                //props.value will convert the date
-                temperaturePoints.push(value.temperature);
-            }
-        }
-
-        const data = [
-            {name: 'Page A', uv: 400, pv: 2400, amt: 2400},
-            {name: 'Page B', uv: 400, pv: 2400, amt: 2400}
-        ];
-        //const tempSeries = new TimeSeries(data);
-
 
         return (
             <Wrapper>

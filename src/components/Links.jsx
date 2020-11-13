@@ -33,6 +33,11 @@ class Links extends Component {
                                 Register User
                             </Link>
                         </Item>
+                        <Item>
+                            <Link to="/tool/clock" className="nav-link">
+                                Get Clock
+                            </Link>
+                        </Item>
                     </List>
                 </Collapse>
             </React.Fragment>

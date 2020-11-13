@@ -147,7 +147,7 @@ class UserView extends Component {
                 <p>Email Address: {email}</p>
                 <p>Address: {address}</p>
 
-                <Button onClick={event =>  window.location.href='/user/list'}>User List</Button>
+                <Button onClick={event =>  window.location.href='/users'}>User List</Button>
                 <LineChart width={1200} height={300} data={activities} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <Line type="monotone" dataKey="deviceid" stroke="#8884d8" />
                     <Line type="monotone" dataKey="feature" stroke="#8884d8" />

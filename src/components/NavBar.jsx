@@ -14,7 +14,6 @@ import { Button} from "./Button";
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import logo from '../soynet3.png'
-import Dropdown from './Dropdown';
 
 /*
 function NavBar() {

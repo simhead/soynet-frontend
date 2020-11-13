@@ -5,10 +5,11 @@
   top: 80px;
   list-style: none;
   text-align: start;
+  z-index: 2;
 }
 
 .dropdown-menu li {
-  background: #1888ff;
+  background: #000305;
   cursor: pointer;
 }
 

@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 //import { Home, UserView, UserInsert, UserUpdate, ToolClock, Users, Devices } from '../pages'
 
 // Using with dropdown
-import { NavBar } from '../components/v2-dropdown'
-import { Home, UserView, UserInsert, UserUpdate, ToolClock, Users, Devices } from '../pages'
-import { AddUser, DeleteUser, UpdateUser, AddDevice, DeleteDevice, UpdateDevice } from '../components/v2-dropdown/pages'
+import { NavBar } from '../v2-dropdown/components'
+import { Home, UserView, UserInsert, UserUpdate, ToolClock, Users, Devices, DeviceView } from '../pages'
+import { AddUser, DeleteUser, UpdateUser, AddDevice, DeleteDevice, UpdateDevice } from '../v2-dropdown/pages'
 
 import { FooterContainer } from '../containers/footer'
 //import 'bootstrap/dist/css/bootstrap.min.css'
@@ -41,6 +41,12 @@ function App() {
                     exact
                     component={UserUpdate}
                 />
+                <Route
+                    path="/device/view/:id"
+                    exact
+                    component={DeviceView}
+                />
+
             </Switch>
             </Router>
             <FooterContainer />

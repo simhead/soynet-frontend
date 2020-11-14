@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { LoginButton } from './LoginButton';
 import { SignupButton } from './SignupButton';
 import { Link } from 'react-router-dom';
@@ -6,32 +6,12 @@ import './NavBar.css';
 import UserDropdown from './UserDropdown';
 import DeviceDropdown from './DeviceDropdown';
 import logo from "../../soynet2.png";
-import Clock from "../Clock";
+import Clock from "../../components/Clock";
 
 function NavBar() {
   const [click, setClick] = useState(false);
   const [userdropdown, setUserDropdown] = useState(false);
   const [devicedropdown, setDeviceDropdown] = useState(false);
-  const [scrolled,setScrolled]=React.useState(false);
-
-  const handleScroll=() => {
-    const offset=window.scrollY;
-    if(offset > 200 ){
-      setScrolled(true);
-    }
-    else{
-      setScrolled(false);
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll',handleScroll)
-  })
-
-  let navbarClasses=['navbar'];
-  if(scrolled){
-    navbarClasses.push('scrolled');
-  }
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);

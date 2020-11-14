@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import api from '../api'
 import axios from 'axios'
 
-import "./Users.css";
+import "./Devices.css";
 import styled from "styled-components";
 import ReactTable from "react-table-6";
 
@@ -21,66 +21,66 @@ const Delete = styled.div`
     cursor: pointer;
 `
 
-class UpdateUser extends Component {
-    updateUser = event => {
+class UpdateDevice extends Component {
+    updateDevice = event => {
         event.preventDefault()
 
-        window.location.href = `/user/update/${this.props.id}`
+        window.location.href = `/device/update/${this.props.id}`
     }
 
     render() {
-        return <Update onClick={this.updateUser}>Update</Update>
+        return <Update onClick={this.updateDevice}>Update</Update>
     }
 }
 
-class ViewUser extends Component {
-    viewUser = event => {
+class ViewDevice extends Component {
+    viewDevice = event => {
         event.preventDefault()
 
-        window.location.href = `/user/view/${this.props.id}`
+        window.location.href = `/device/view/${this.props.id}`
     }
 
     render() {
-        return <View onClick={this.viewUser}>View</View>
+        return <View onClick={this.viewDevice}>View</View>
     }
 }
 
-class DeleteUser extends Component {
-    deleteUser = event => {
+class DeleteDevice extends Component {
+    deleteDevice = event => {
         event.preventDefault()
 
         if (
             window.confirm(
-                `Do you want to delete the User ${this.props.id} permanently?`,
+                `Do you want to delete the Device ${this.props.id} permanently?`,
             )
         ) {
-            api.deleteUserById(this.props.id)
+            api.deleteDeviceById(this.props.id)
             window.location.reload()
         }
     }
 
     render() {
-        return <Delete onClick={this.deleteUser}>Delete</Delete>
+        return <Delete onClick={this.deleteDevice}>Delete</Delete>
     }
 }
 
-class Users extends Component {
+class Devices extends Component {
     constructor(props){
         super(props);
         this.state={
-            users: [],
+            devices: [],
             loading: true
         }
     }
 
-    async getAllUsers(){
-        const res = await axios.get('http://localhost:9000/soynet/api/users')
+    async getAllDevices(){
+        const res = await axios.get('http://localhost:9000/soynet/api/devices')
         console.log(res.data)
-        this.setState({loading:false, users: res.data.data})
+        this.setState({loading:false, devices: res.data.data})
     }
 
     componentDidMount = async () => {
-        await this.getAllUsers()
+        await this.getAllDevices()
     }
 
     render() {
@@ -91,13 +91,13 @@ class Users extends Component {
                 filterable: true,
             },*/
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: 'Device Name',
+                accessor: 'deviceName',
                 filterable: true,
             },
             {
-                Header: 'FaceID',
-                accessor: 'faceid',
+                Header: 'Device ID',
+                accessor: 'deviceId',
                 filterable: true,
             },
             {
@@ -106,7 +106,7 @@ class Users extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <ViewUser id={props.original._id} />
+                            <ViewDevice id={props.original._id} />
                         </span>
                     )
                 },
@@ -117,7 +117,7 @@ class Users extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateUser id={props.original._id} />
+                            <UpdateDevice id={props.original._id} />
                         </span>
                     )
                 },
@@ -128,7 +128,7 @@ class Users extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteUser id={props.original._id} />
+                            <DeleteDevice id={props.original._id} />
                         </span>
                     )
                 },
@@ -137,9 +137,9 @@ class Users extends Component {
 
         return (
             <div className="App">
-                <br/>  Users Table
+                <br/>  Device Table
                 <ReactTable
-                    data={this.state.users}
+                    data={this.state.devices}
                     columns={columns}
                     defaultPageSize={10}
                     showPageSizeOptions={true}
@@ -152,4 +152,4 @@ class Users extends Component {
     }
 }
 
-export default Users
+export default Devices

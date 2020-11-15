@@ -37,6 +37,7 @@ class UserView extends Component {
             id: this.props.match.params.id,
             name: '',
             faceid: '',
+            mobile: '',
             email: '',
             address: '',
             user: [],
@@ -53,6 +54,7 @@ class UserView extends Component {
             this.setState({
                 name: userById.data.data.name,
                 faceid: userById.data.data.faceid,
+                mobile: userById.data.data.mobile,
                 email: userById.data.data.email,
                 address: userById.data.data.address,
                 isLoading: false,
@@ -70,7 +72,7 @@ class UserView extends Component {
     }
 
     render() {
-        const { name, faceid, email, address, activities, isLoading } = this.state
+        const { name, faceid, mobile, email, address, activities, isLoading } = this.state
 
         const columns = [
             {
@@ -96,6 +98,7 @@ class UserView extends Component {
             {
                 Header: 'Device ID',
                 accessor: 'deviceid',
+                filterable: true,
             },
             {
                 Header: 'Feature Vector',
@@ -144,6 +147,7 @@ class UserView extends Component {
 
                 <p>Name: {name}</p>
                 <p>FaceID: {faceid}</p>
+                <p>Mobile number: {mobile}</p>
                 <p>Email Address: {email}</p>
                 <p>Address: {address}</p>
 
@@ -166,7 +170,7 @@ class UserView extends Component {
                         data={activities}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={5}
+                        defaultPageSize={50}
                         showPageSizeOptions={true}
                         minRows={0}
                     />

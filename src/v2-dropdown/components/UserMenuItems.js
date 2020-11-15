@@ -5,13 +5,8 @@ export const UserMenuItems = [
     cName: 'dropdown-link'
   },
   {
-    title: 'Update User',
-    path: '/updateuser',
-    cName: 'dropdown-link'
-  },
-  {
-    title: 'Delete User',
-    path: '/deleteuser',
+    title: 'Add Activity',
+    path: '/addActivity',
     cName: 'dropdown-link'
   }
 ];

@@ -86,6 +86,7 @@ class DeviceView extends Component {
             {
                 Header: 'Face ID',
                 accessor: 'faceid',
+                filterable: true,
             },
             {
                 Header: 'Datetime',
@@ -98,10 +99,6 @@ class DeviceView extends Component {
                     //const datetimeseries = getMillies(convertdate.value)
                     return <span>{datetimeseries}</span>
                 }
-            },
-            {
-                Header: 'Device ID',
-                accessor: 'deviceid',
             },
             {
                 Header: 'Feature Vector',
@@ -170,7 +167,7 @@ class DeviceView extends Component {
                         data={activities}
                         columns={columns}
                         loading={isLoading}
-                        defaultPageSize={5}
+                        defaultPageSize={50}
                         showPageSizeOptions={true}
                         minRows={0}
                     />

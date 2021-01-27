@@ -1,11 +1,13 @@
-﻿const config = require('./config');
+﻿/*
+const config = require('./config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
 
+
 module.exports = {
-    authenticate,
+    //authenticate,
     getAll,
     getById,
     create,
@@ -71,4 +73,5 @@ async function update(id, userParam) {
 
 async function _delete(id) {
     await User.findByIdAndRemove(id);
-}
+}*/
+

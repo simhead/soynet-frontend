@@ -75,7 +75,7 @@ class Users extends Component {
 
     getAllUsers = async () => {
         try {
-            const res = await axios.get('http://localhost:9000/soynet/api/usersf');
+            const res = await axios.get('http://localhost:9000/soynet/api/users');
 
             console.log('TEST', res);
 

@@ -23,9 +23,21 @@ const Button = styled.button.attrs({
     margin: 10px 10px 10px 5px;
 `
 
-function getMillies(datetimestamp) {
-    const dateInMillies = new Date(datetimestamp);
-    return dateInMillies;
+function date2str(x, y) {
+    const z = {
+        M: x.getMonth() + 1,
+        d: x.getDate(),
+        h: x.getHours(),
+        m: x.getMinutes(),
+        s: x.getSeconds()
+    };
+    y = y.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
+        return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
+    });
+
+    return y.replace(/(y+)/g, function(v) {
+        return x.getFullYear().toString().slice(-v.length)
+    });
 }
 
 class DeviceView extends Component {
@@ -95,9 +107,9 @@ class DeviceView extends Component {
                 Cell : (convertdate) => {
                     //props.value will convert the date
                     const dateObject = new Date(convertdate.value);
-                    const datetimeseries = dateObject.getTime()
-                    //const datetimeseries = getMillies(convertdate.value)
-                    return <span>{datetimeseries}</span>
+                    //const datetimeseries = dateObject.getTime()
+                    const datetimeseries = date2str(dateObject, 'yyyy-MM-dd hh:mm:ss')
+                    return datetimeseries
                 }
             },
             {
@@ -110,7 +122,7 @@ class DeviceView extends Component {
                         valout += convertfeature.value[i]+', ';
                     }
                     valout += convertfeature.value[convertfeature.value.length-1]+']';
-                    return <span>{valout}</span>
+                    return valout
                 }
             },
             {

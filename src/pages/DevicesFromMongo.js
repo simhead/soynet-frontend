@@ -74,7 +74,7 @@ class Devices extends Component {
     }
 
     async getAllDevices(){
-        const res = await axios.get('http://localhost:9000/soynet/api/devices')
+        const res = await axios.get('http://ec2-15-165-48-131.ap-northeast-2.compute.amazonaws.com:9000/soynet/api/devices')
         console.log(res.data)
         this.setState({loading:false, devices: res.data.data})
     }

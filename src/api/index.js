@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'http://localhost:9000/soynet/api',
+    baseURL: 'http://ec2-15-165-48-131.ap-northeast-2.compute.amazonaws.com:9000/soynet/api',
 })
 
 // user APIs

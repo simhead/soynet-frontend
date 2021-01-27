@@ -102,8 +102,8 @@ class UserView extends Component {
                 Cell : (convertdate) => {
                     //props.value will convert the date
                     const dateObject = new Date(convertdate.value);
-                    //const datetimeseries = dateObject.getTime()
-                    const datetimeseries = date2str(dateObject, 'yyyy-MM-dd')
+                    const datetimeseries = dateObject.getTime()
+                    //const datetimeseries = date2str(dateObject, 'yyyy-MM-dd')
                     return <span>{datetimeseries}</span>
                 }
             },

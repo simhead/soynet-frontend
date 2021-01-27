@@ -101,35 +101,30 @@ class Users extends Component {
                 filterable: true,
             },
             {
-                Header: '',
-                accessor: '',
+                Header: 'VIEW',
+                accessor: 'view',
                 Cell: function(props) {
                     return (
-                        <span>
-                            <ViewUser id={props.original._id} />
-                        </span>
+                        <ViewUser id={props.original._id} />
+
                     )
                 },
             },
             {
-                Header: '',
-                accessor: '',
+                Header: 'UPDATE',
+                accessor: 'update',
                 Cell: function(props) {
                     return (
-                        <span>
-                            <UpdateUser id={props.original._id} />
-                        </span>
+                        <UpdateUser id={props.original._id} />
                     )
                 },
             },
             {
-                Header: '',
-                accessor: '',
+                Header: 'DELETE',
+                accessor: 'delete',
                 Cell: function(props) {
                     return (
-                        <span>
-                            <DeleteUser id={props.original._id} />
-                        </span>
+                        <DeleteUser id={props.original._id} />
                     )
                 },
             },

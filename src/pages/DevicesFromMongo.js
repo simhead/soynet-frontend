@@ -105,9 +105,7 @@ class Devices extends Component {
                 accessor: '',
                 Cell: function(props) {
                     return (
-                        <span>
-                            <ViewDevice id={props.original._id} />
-                        </span>
+                        <ViewDevice id={props.original._id} />
                     )
                 },
             },
@@ -116,9 +114,7 @@ class Devices extends Component {
                 accessor: '',
                 Cell: function(props) {
                     return (
-                        <span>
-                            <UpdateDevice id={props.original._id} />
-                        </span>
+                        <UpdateDevice id={props.original._id} />
                     )
                 },
             },
@@ -127,9 +123,7 @@ class Devices extends Component {
                 accessor: '',
                 Cell: function(props) {
                     return (
-                        <span>
-                            <DeleteDevice id={props.original._id} />
-                        </span>
+                        <DeleteDevice id={props.original._id} />
                     )
                 },
             },

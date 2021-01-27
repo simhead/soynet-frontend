@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 80px 60px;
-  background: radial-gradient(circle, rgba(92,39,251,1) 0%, rgba(112,71,247,1) 100%);
+  background: radial-gradient(circle, rgb(240, 239, 245) 0%, rgb(244, 243, 246) 100%);
 
   @media (max-width: 1000px) {
     padding: 70px 30px;
@@ -36,7 +36,7 @@ export const Row = styled.div`
 `;
 
 export const Link = styled.a`
-  color: #fff;
+  color: black;
   margin-bottom: 20px;
   font-size: 18px;
   text-decoration: none;
@@ -49,7 +49,7 @@ export const Link = styled.a`
 
 export const Title = styled.p`
   font-size: 24px;
-  color: #fff;
+  color: black;
   margin-bottom: 40px;
   font-weight: bold;
 `;

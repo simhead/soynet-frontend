@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // Using with dropdown
 import { NavBar } from '../v2-dropdown/components'
 import { Home, UserView, UserInsert, UserUpdate, ToolClock, Users, Devices, DeviceView } from '../pages'
-import { AddUser, AddActivity, AddDevice } from '../v2-dropdown/pages'
+import { AddUser, AddActivity, AddDevice, LoginPage } from '../v2-dropdown/pages'
 
 import { FooterContainer } from '../containers/footer'
 //import 'bootstrap/dist/css/bootstrap.min.css'
@@ -26,6 +26,7 @@ function App() {
                 <Route path="/addactivity" exact component={AddActivity} />
                 <Route path="/adddevice" exact component={AddDevice} />
                 <Route path='/devices' component={Devices} />
+                <Route path='/login' component={LoginPage} />
                 <Route path="/user/create" exact component={UserInsert} />
                 <Route path="/tool/clock" exact component={ToolClock} />
                 <Route

@@ -72,8 +72,8 @@ function NavBar() {
     <>
       <nav className='navbar'>
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            <img src={logo} width="100" height="35" alt="soynet.io" />
-            <Clock />
+            <img src={logo} width="150" height="50" alt="soynet.io" />
+
         </Link>
         <div className='menu-icon' onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -122,8 +122,7 @@ function NavBar() {
             </Link>
           </li>
         </ul>
-        <LoginButton /> &nbsp;
-        <SignupButton />
+
       </nav>
     </>
   );

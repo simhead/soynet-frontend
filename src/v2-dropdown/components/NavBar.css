@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  background: linear-gradient(rgb(240, 239, 245) 0%, rgb(244, 243, 246) 100%);
   position: relative;
   height: 80px;
   display: flex;
@@ -44,10 +44,11 @@
   display: flex;
   align-items: center;
   height: 80px;
+  color: black;
 }
 
 .nav-links {
-  color: white;
+  color: black;
   text-decoration: none;
   padding: 0.5rem 1rem;
 }

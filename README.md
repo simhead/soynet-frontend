@@ -78,4 +78,4 @@ https://github.com/esnet/react-timeseries-charts
 https://software.es.net/react-timeseries-charts/#/
 
 ### NPM modules
-npm install recharts express body-parsenpm install recharts express body-parser cors mongoose nodr cors mongoose nodemon
+npm install recharts express body-parser cors mongoose nodr cors mongoose nodemon

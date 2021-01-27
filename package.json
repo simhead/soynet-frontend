@@ -21,7 +21,8 @@
     "react-timeseries-charts": "^0.16.1",
     "rechart": "0.0.1",
     "recharts": "^1.8.5",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "scripts": {
     "start": "PORT=8080 react-scripts start",

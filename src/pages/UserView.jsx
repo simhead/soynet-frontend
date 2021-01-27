@@ -102,9 +102,9 @@ class UserView extends Component {
                 Cell : (convertdate) => {
                     //props.value will convert the date
                     const dateObject = new Date(convertdate.value);
-                    const datetimeseries = dateObject.getTime()
-                    //const datetimeseries = date2str(dateObject, 'yyyy-MM-dd')
-                    return <span>{datetimeseries}</span>
+                    //const datetimeseries = dateObject.getTime()
+                    const datetimeseries = date2str(dateObject, 'yyyy-MM-dd hh:mm:ss')
+                    return datetimeseries
                 }
             },
             {
@@ -122,7 +122,7 @@ class UserView extends Component {
                         valout += convertfeature.value[i]+', ';
                     }
                     valout += convertfeature.value[convertfeature.value.length-1]+']';
-                    return <span>{valout}</span>
+                    return valout
                 }
             },
             {

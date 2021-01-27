@@ -73,20 +73,34 @@ class Users extends Component {
         }
     }
 
-    async getAllUsers(){
+    getAllUsers = async () => {
         try {
-            const res = await axios.get('http://localhost:9000/soynet/api/users')
-            console.log(res.data)
+            const res = await axios.get('http://localhost:9000/soynet/api/users');
+
+            console.log('TEST', res);
+
+            this.setState({loading:false, users: res.data.data})
         } catch (e) {
-            console.error('CONNECTION ERROR:', e);
+            console.error('TEST ERROR:', e);
         }
+    };
+
+    /*
+    async getAllUsers() {
+
+        const res = await axios.get('http://localhost:9000/soynet/api/users')
+        console.log(res.data)
 
         this.setState({loading:false, users: res.data.data})
     }
 
+
+*/
     componentDidMount = async () => {
         await this.getAllUsers()
     }
+
+
 
     render() {
         const columns = [
